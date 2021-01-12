@@ -1,0 +1,163 @@
+<br><br>
+<mat-card>
+    <form [formGroup]="addregistration" style="display: flex; flex-direction: column;
+    justify-content: center; ">
+        <div style="display: flex; flex-direction: row;">
+            <div style=" padding:10px; ">
+                <h2>Photo Upload</h2>
+
+
+                <div class="card-container">
+                    <button mat-flat-button color="primary" (click)="Passportfile.click()">Upload Profile Picture</button>
+                    <input class="custom-file-input" #Passportfile  hidden type="file" id="FUImage" accept=".png, .jpg, .jpeg" size=""
+                        (change)="handleFileInput($event.target.files)">
+
+                </div>
+                <br>
+                <div class="card-container">
+                    <img src="{{ImageBaseData}}" alt="" height="200" width="200">
+                </div>
+
+            </div>
+            <div style=" border-left: 5px solid rgb(109, 102, 102); padding-left: 10px;">
+                <div>
+                    
+                    <mat-form-field appearance="outline"
+                        style="width: 100%; font-family: 'Nunito', sans-serif !important;">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="name"  formControlName="name" value="" required>
+                        <mat-hint style="color: rgb(224, 21, 21);">
+                            <span *ngIf=" name.errors &&  (name.dirty || name.touched)" class="validation">
+                                <span class="validation" *ngIf="addregistration.get('name').errors.required">
+                                    Name
+                                    is mandatory</span>
+                            </span>
+                            <span *ngIf="name.errors && (name.dirty || name.touched)" class="validatorsStyle"> 
+                                <span *ngIf="addregistration.get('name').errors.maxlength">
+                                    Only 20 Characters are allow .&nbsp;</span>
+                            </span>
+                            <span *ngIf="name.errors && (name.dirty || name.touched)" class="validatorsStyle"> 
+                                <span *ngIf="addregistration.get('name').errors.pattern">Only
+                                    Allow Alphabets </span>
+                            </span>
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+                <mat-form-field appearance="outline" style="width: 100%; font-family: 'Nunito', sans-serif !important;">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder="email" formControlName="lastName">
+                </mat-form-field>
+                <mat-form-field appearance="outline"
+                    style="width: 100%;  font-family: 'Nunito', sans-serif !important;">
+                    <mat-label>Number</mat-label>
+                    <input matInput placeholder="Number" formControlName="phone_number">
+                </mat-form-field>
+
+
+                <div>
+                    <span>Age : {{gridsize.value}}</span>
+                    <mat-slider #gridsize step="1" min="10" max="100" [value]="gridsize" formControlName="age"
+                        style="width: 100%"></mat-slider>
+                </div>
+
+
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Select Country</mat-label>
+                    <mat-select formControlName="country">
+                        <mat-option *ngFor="let cty of country" [value]="cty.value">
+                            {{cty.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Select State</mat-label>
+                    <mat-select formControlName="state">
+                        <mat-option *ngFor="let state of states" [value]="state.value">
+                            {{state.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Home Address
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+
+                        <mat-form-field appearance="outline"
+                            style="width: 100%;  font-family: 'Nunito', sans-serif !important;">
+                            <mat-label>Address</mat-label>
+                            <input matInput type="Address" placeholder="Address 1" formControlName="homeAddress1">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline"
+                            style="width: 100%;  font-family: 'Nunito', sans-serif !important;">
+                            <mat-label>Address</mat-label>
+                            <input matInput type="Address" placeholder="Address 2" formControlName="homeAddress2">
+                        </mat-form-field>
+
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+                <br>
+                <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Office Address
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+
+                        <mat-form-field appearance="outline"
+                            style="width: 100%;  font-family: 'Nunito', sans-serif !important;">
+                            <mat-label>Address</mat-label>
+                            <input matInput type="Address" placeholder="Address 1" formControlName="officeAddress1">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline"
+                            style="width: 100%;  font-family: 'Nunito', sans-serif !important;">
+                            <mat-label>Address</mat-label>
+                            <input matInput type="Address" placeholder="Address 2" formControlName="officeAddress2">
+                        </mat-form-field>
+
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+
+
+
+                <br>
+                <mat-form-field class="input" style="width: 100%;">
+
+                    <mat-chip-list #chipList>
+
+                        <mat-chip selected color="primary" *ngFor="let Tag of Tags" [selectable]="selectable"
+                            [removable]="removable" (removed)="remove(Tag)">
+                            {{Tag}}
+
+
+                            <mat-icon matChipRemove *ngIf="removable">cancel
+                            </mat-icon>
+                        </mat-chip>
+                        <input placeholder="Add Tags" formControlName="Tags" [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" />
+                    </mat-chip-list>
+                </mat-form-field>
+
+
+
+            </div>
+        </div>
+        <br>
+        <button mat-stroked-button color="primary" [disabled]="addregistration.invalid"
+            (click)="addUserData(addregistration.value)" style=" font-size: 20px;">
+            <b>Register User</b>
+        </button>
+    </form>
+
+
+
+</mat-card>
