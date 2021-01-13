@@ -1,48 +1,25 @@
-<!-- <div style="display: flex; flex-direction: row;">
-<div *ngFor ='let img of imgData'> 
-    <img [src]="img.ImageBaseData" style="width: 100px; height: 100px;">
-</div>
-<div *ngFor ='let data of userData'>
-   
-    <mat-card style="display: flex;flex-direction: column; background-color: gray; width: 500px;">
-<span>Name : {{data.name}}</span> 
-<span>Last Name : {{data.lastName}}</span> 
-<span>Number : {{data.phoneNumber}}</span> 
-<span>Age : {{data.age}}</span>
-<span> Country : {{data.country}}</span> 
-<span> State : {{data.state}}</span> 
-<span> Home Address : {{data.homeAddress1}} , {{data.homeAddress2}} </span> 
-<span> Office Address : {{data.officeAddress1}} , {{data.officeAddress2}}</span>
-<span> Home Address : {{data.name}}</span> 
-<span> Tag : {{data.Tags}}</span> 
 
-</mat-card>
-</div>
 <br><br>
-</div> -->
-
-<div class="card middle">
-    <div class="top-section"  *ngFor ='let img of imgData'>
-       <img [src]="img.ImageBaseData" >
-      <div class="menu-icon">
-        
-      </div>
-     
-    </div>
-  
-    <div class="info-section" *ngFor ='let data of userData'>
-      <h2>{{data.name}} {{data.lastName}}
-          <br>
-        <div class="border"></div>
-      </h2>
-     <div style="display: flex; flex-direction: column;">
-    <span> <b> Phone Number :</b>  {{data.phone_number}}</span>
-    <span> <b>Age :</b>  {{data.age}}</span>
-    <span><b>Country :</b>  {{data.country}}</span>
-    <span><b>State :</b> {{data.state}}</span>
-    <span><b>Home Address :</b> {{data.homeAddress1}} , {{data.homeAddress2}}</span>
-    <span><b>Office Address :</b> {{data.officeAddress1}} , {{data.officeAddress2}}</span>
-    <span><b>Tag :</b> {{data.Tags}}</span>
-</div>
+<div class="card middle" style="margin: 0 auto;">
+  <div class="top-section" *ngFor='let img of imgData'>
+  <br><br>
+  <div class="info-section" *ngFor='let data of userData'>
+    <h2>{{data.name}} {{data.lastName}}
+      <br>
+      <div class="border"></div>
+    </h2>
+    <div style="display: flex; flex-direction: column;">
+      <img [src]="img.ImageBaseData">
+      <span> <b> Phone Number :</b> {{data.phone_number}}</span>
+      <span> <b>Age :</b> {{data.age}}</span>
+      <span><b>Country :</b> {{data.country}}</span>
+      <span><b>State :</b> {{data.state}}</span>
+      <span><b>Home Address :</b> {{data.homeAddress1}} , {{data.homeAddress2}}</span>
+      <span><b>Office Address :</b> {{data.officeAddress1}} , {{data.officeAddress2}}</span>
+      <span><b>Tag :</b> {{data.Tags}}</span>
     </div>
   </div>
+  <hr>
+  <br>
+</div>
+</div>
